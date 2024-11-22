@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Drawing Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+<body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://img.freepik.com/premium-photo/colorful-flowers-leaves-dark-background-generative-ai_946522-16374.jpg?w=826" alt="Logo" id="logo"> <!-- Replace with your logo -->
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="drawing.html">Drawing Tool</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="header" id="home">
+        <h1>Canvas Drawing Tool</h1>
+    </div>
+
+    <!-- Drawing Toolbar and Canvas -->
+    <div id="toolbar">
+        <button id="pencilBtn">Pencil</button>
+        <button id="eraserBtn">Eraser</button>
+        <input type="color" id="colorPicker">
+        <button id="clearBtn">Clear</button>
+        <button id="download" class="btn">
+            Download
+            <i class="fa-solid fa-arrow-down"></i>
+        </button>
+    </div>
+
+    <div id="canvas-container">
+        <canvas id="drawingCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Canvas Drawing Tool. All rights reserved.</p>
+        <p>Follow us on:
+            <a href="#">Facebook</a> | 
+            <a href="#">Instagram</a> | 
+            <a href="#">Twitter</a>
+        </p>
+    </footer>
+
+    <!-- Include JavaScript -->
+    <script src="canva.js"></script>
+</body>
+</html>
