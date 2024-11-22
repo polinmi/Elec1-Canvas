@@ -5,16 +5,182 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas Drawing Tool</title>
     
-    <!-- Link to Google Fonts for Poppins and Lobster -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lobster&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navbar Section -->
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #ff7f50, #ff1493);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo img {
+            width: 50px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff1493;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-top: 100px;
+            padding: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-family: 'Lobster', cursive;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+
+        /* Content Sections */
+        section {
+            margin-top: 50px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        section ul, section ol {
+            padding: 0;
+            list-style: none;
+        }
+
+        section ul li, section ol li {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        section ol {
+            list-style: decimal;
+            padding-left: 30px;
+        }
+
+        /* Toolbar */
+        #toolbar {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        #toolbar button {
+            background: #ff1493;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #toolbar button:hover {
+            background: #ff7f50;
+        }
+
+        #toolbar input[type="color"] {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Canvas Styling */
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 5px solid #fff;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #2c2f33;
+            color: #fff;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #ff1493;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #toolbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="logo">
-            <img src="https://vectorportal.com/storage/b0mua9q3b4snAb5EFR50WNsRL0ZcGvmyPYff9Hgg.jpg" alt="Logo" id="logo"> <!-- Replace 'logo.png' with your actual logo image -->
+            <img src="https://vectorportal.com/storage/b0mua9q3b4snAb5EFR50WNsRL0ZcGvmyPYff9Hgg.jpg" alt="Canvas Drawing Tool Logo">
         </div>
         <ul class="nav-links">
             <li><a href="home.html">Home</a></li>
@@ -23,35 +189,32 @@
         </ul>
     </nav>
 
-    <!-- Main Content -->
-    <div class="header" id="home">
+    <!-- Header -->
+    <div class="header">
         <h1>Canvas Drawing Tool</h1>
         <p>Use this tool to draw, erase, and select colors. Have fun creating your artwork!</p>
     </div>
 
-    <!-- Additional Information Section -->
+    <!-- Features -->
     <section class="features">
         <h2>Features of the Canvas Drawing Tool</h2>
-        <p>Our Canvas Drawing Tool is a simple yet powerful online tool that allows you to unleash your creativity. Here are some of the features:</p>
         <ul>
-            <li><strong>Draw Freely:</strong> Use the pencil tool to create freehand drawings with your mouse or touchpad.</li>
-            <li><strong>Eraser Tool:</strong> Easily erase any part of your drawing with the eraser feature.</li>
-            <li><strong>Color Picker:</strong> Choose from a wide range of colors to add vibrancy to your creations.</li>
-            <li><strong>Clear Canvas:</strong> Start fresh anytime with the "Clear" button, which erases all your work.</li>
-            <li><strong>Responsive:</strong> Works seamlessly across devices, so you can sketch on your computer, tablet, or phone.</li>
+            <li><strong>Draw Freely:</strong> Use the pencil tool to create freehand drawings.</li>
+            <li><strong>Eraser Tool:</strong> Easily erase any part of your drawing.</li>
+            <li><strong>Color Picker:</strong> Choose vibrant colors for your creations.</li>
+            <li><strong>Clear Canvas:</strong> Reset your work with a single click.</li>
         </ul>
     </section>
 
+    <!-- How It Works -->
     <section class="how-it-works">
         <h2>How It Works</h2>
-        <p>Getting started with our Canvas Drawing Tool is easy! Here's how to use it:</p>
-        <ol>
-            <li><strong>Select Your Tool:</strong> Choose between the pencil or eraser tool to begin.</li>
-            <li><strong>Pick a Color:</strong> Use the color picker to select your preferred drawing color.</li>
-            <li><strong>Start Drawing:</strong> Click and drag to draw on the canvas area.</li>
-            <li><strong>Erase and Edit:</strong> If you make a mistake, simply switch to the eraser tool and remove unwanted lines.</li>
-            <li><strong>Clear the Canvas:</strong> Use the "Clear" button to start a new drawing or remove your existing work.</li>
-        </ol>
+        <ul>
+            <li>Select your tool: pencil or eraser.</li>
+            <li>Pick a color using the color picker.</li>
+            <li>Click and drag to draw on the canvas.</li>
+            <li>Erase mistakes with the eraser tool.</li>
+        </ul>
     </section>
 
     <section class="benefits">
@@ -65,7 +228,7 @@
         </ul>
     </section>
 
-    <!-- Footer Section -->
+    <!-- Footer -->
     <footer>
         <p>&copy; 2024 Canvas Drawing Tool. All rights reserved.</p>
         <p>Follow us on:
@@ -74,7 +237,5 @@
             <a href="#">Twitter</a>
         </p>
     </footer>
-
-    <script src="canva.js"></script>
 </body>
 </html>
