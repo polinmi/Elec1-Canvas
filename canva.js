@@ -3,7 +3,6 @@ const canvas = document.getElementById('drawingCanvas');
 const ctx = canvas.getContext('2d');
 const pencilBtn = document.getElementById('pencilBtn');
 const eraserBtn = document.getElementById('eraserBtn');
-const rectBtn = document.getElementById('rectBtn');
 const circleBtn = document.getElementById('circleBtn');
 const colorPicker = document.getElementById('colorPicker');
 const clearBtn = document.getElementById('clearBtn');
@@ -90,14 +89,6 @@ eraserBtn.addEventListener('click', () => {
     eraserBtn.style.backgroundColor = '#ddd';
 });
 
-// Tool selection (Rectangle)
-rectBtn.addEventListener('click', () => {
-    currentShape = 'rectangle';
-    tool = null; // Disable freehand drawing
-    resetButtonStyles();
-    rectBtn.style.backgroundColor = '#ddd';
-});
-
 // Tool selection (Circle)
 circleBtn.addEventListener('click', () => {
     currentShape = 'circle';
@@ -123,7 +114,7 @@ function drawRectangle(x1, y1, x2, y2) {
 }
 
 // Function to draw a circle
-function drawCircle(x1, y1, x2, y2) {
+function drawCircle(x1,  y1, x2, y2) {
     const radius = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
     ctx.fillStyle = currentColor;
     ctx.beginPath();
