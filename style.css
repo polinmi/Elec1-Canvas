@@ -117,9 +117,9 @@ body {
     color: white;
     padding: 15px 30px;
     border: none;
-    border-radius: 8px;
+    border-radius: 1px;
     font-size: 1.2rem;
-    cursor: pointer;
+    cursor: move;
     transition: background 0.3s;
 }
 
@@ -129,8 +129,8 @@ body {
 
 /* Pencil and Eraser icons */
 #toolbar button#pencilBtn:before {
-    content: "✏️"; /* Pencil icon */
-    font-size: 1.5rem;
+    content: "✏️"; 
+    font-size: 2rem;
 }
 
 #toolbar button#eraserBtn:before {
@@ -149,9 +149,9 @@ body {
 canvas {
     display: block;
     margin: 0 auto;
-    border: 5px solid #fff;
+    border: solid white;
     border-radius: 10px;
-    background-color: #fff; /* Make the canvas white */
+    background-color: beige; 
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Light shadow for canvas */
 }
 

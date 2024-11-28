@@ -5,8 +5,190 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Canvas Drawing Tool</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <style>
+        /* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Style */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #ff7f50, #ff1493); /* Bright gradient background */
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo img {
+    width: 50px;
+    height: auto;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff1493; /* Fun hover effect for the links */
+}
+
+/* Main Header */
+
+
+.header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* Additional Information Section */
+.features, .how-it-works, .benefits {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+}
+
+.features h2, .how-it-works h2, .benefits h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.features ul, .benefits ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.features li, .benefits li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+.how-it-works ol {
+    list-style-type: decimal;
+    padding-left: 30px;
+}
+
+.how-it-works li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* Drawing Toolbar */
+#toolbar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+#toolbar button {
+    background: #ff1493;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 1px;
+    font-size: 1.2rem;
+    cursor: move;
+    transition: background 0.3s;
+}
+
+#toolbar button:hover {
+    background: #ff7f50; /* Fun hover effect for buttons */
+}
+
+/* Pencil and Eraser icons */
+#toolbar button#pencilBtn:before {
+    content: "✏️"; 
+    font-size: 2rem;
+}
+
+#toolbar button#eraserBtn:before {
+    content: "🧽"; /* Eraser icon */
+    font-size: 1.5rem;
+}
+
+#toolbar input[type="color"] {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Canvas Styling */
+canvas {
+    display: block;
+    margin: 0 auto;
+    border: solid white;
+    border-radius: 10px;
+    background-color: beige; 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Light shadow for canvas */
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #2c2f33;
+    color: #fff;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: #ff1493;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #fff; /* Interactive hover effect on links */
+}
+
+/* Add some responsiveness */
+@media (max-width: 768px) {
+    .features, .how-it-works, .benefits {
+        padding: 20px;
+    }
+
+    #toolbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    
+}
+
+    </style>
 </head>
 <body>
     <!-- Navbar Section -->
@@ -23,14 +205,13 @@
 
     <!-- Main Content -->
     <div class="header" id="home">
-        <h1>Canvas Drawing Tool</h1>
+        
     </div>
 
     <!-- Drawing Toolbar and Canvas -->
     <div id="toolbar">
         <button id="pencilBtn">Pencil</button>
         <button id="eraserBtn">Eraser</button>
-        <button id="circleBtn">Circle</button>
         <input type="color" id="colorPicker">
         <button id="clearBtn">Clear</button>
         <button id="download" class="btn">
