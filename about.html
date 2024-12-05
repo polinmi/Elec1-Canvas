@@ -3,44 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
+    <title>About Us - Our Creative Team</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Basic Reset and Body */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            height: 100%;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo img {
+            width: 50px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff1493;
+        }
+
+        /* About Section Styling */
+        header {
+            background-color: #ff1493; /* Purple background for header */
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-bottom: 3px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+
+        }
+
+        
+
+        .content{
+            font-family: 'Times New Roman', Times, serif;
+            color: black;
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 100px 20px 20px; /* Adjusting padding for sticky navbar */
+        }
+
+        .about-text {
+            max-width: 800px;
+            text-align: center;
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .member {
+            width: 250px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .member:hover {
+            transform: scale(1.05);
+        }
+
+        .member img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .member h2 {
+            font-size: 1.5em;
+            margin-top: 15px;
+            color: #6c5ce7;
+        }
+
+        .member p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #2d3436;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Ensures footer is always at the bottom */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .content {
+            flex: 1;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>About Us</h1>
-        <p>Meet our amazing team of four!</p>
-    </header>
-    <main>
-        <section class="team">
-            <article class="member">
-                <img src="member1.jpg" alt="Member 1">
-                <h2>Member 1</h2>
-                <p>Role: Team Leader</p>
-                <p>Description: A visionary leader who guides the team to success.</p>
-            </article>
-            <article class="member">
-                <img src="member2.jpg" alt="Member 2">
-                <h2>Member 2</h2>
-                <p>Role: Designer</p>
-                <p>Description: Creates stunning visuals and user-friendly designs.</p>
-            </article>
-            <article class="member">
-                <img src="member3.jpg" alt="Member 3">
-                <h2>Member 3</h2>
-                <p>Role: Developer</p>
-                <p>Description: Builds the code that brings ideas to life.</p>
-            </article>
-            <article class="member">
-                <img src="member4.jpg" alt="Member 4">
-                <h2>Member 4</h2>
-                <p>Role: Content Creator</p>
-                <p>Description: Crafts compelling content to engage audiences.</p>
-            </article>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Our Team. All rights reserved.</p>
-    </footer>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://vectorportal.com/storage/b0mua9q3b4snAb5EFR50WNsRL0ZcGvmyPYff9Hgg.jpg" alt="Canvas Drawing Tool Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="drawing.html">Drawing Tool</a></li>
+        </ul>
+    </nav>
+
+        <!-- Main Content Section -->
+        <div class="content">
+            <main>
+                <section class="about-text">
+                    <h3>About Our Team</h3>
+                    <p>We are a diverse team of innovators, designers, developers, and content creators, united by a passion for crafting exceptional digital solutions. Each member brings a unique perspective and skill set, but together we share the mission of delivering groundbreaking experiences that make a real difference.</p>
+                </section>
+
+                <section class="team">
+                    <article class="member">
+                        <img src="https://scontent.fcgy2-4.fna.fbcdn.net/v/t39.30808-6/469278458_2312751502458100_6928559196111903893_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHB4TJq_jA3EKfIbHIdBL4dhQ0-dcimAyOFDT51yKYDI7DhjqIchkMPpRqwCuThxGEtR2oWUQVZ54c1MUrQF7T3&_nc_ohc=2K_IZc6fxq0Q7kNvgHb2Fj4&_nc_zt=23&_nc_ht=scontent.fcgy2-4.fna&_nc_gid=AqvJn8BihwOH2InYRodXvUi&oh=00_AYDMVwoy6w2te2d1HO9B2dd2bJaaDUVWTeeV1FSH6fpW5w&oe=67578891" alt="Pauline May Coming">
+                        <h2>Pauline May Coming</h2>
+                        <p><strong>Role:</strong> Team Leader</p>
+                        <p><strong>Name:</strong> Pauline May Coming</p>
+                        <p><strong>Description:</strong> A visionary leader who inspires and drives the team towards success with her strategic thinking and exceptional problem-solving skills.</p>
+                        
+                    </article>
+                    <article class="member">
+                        <img src="member2.jpg" alt="Member 2">
+                        <h2>Member 2</h2>
+                        <p><strong>Role:</strong> Designer</p>
+                        <p><strong>Description:</strong> A creative genius, designing visually stunning experiences that delight users and elevate our products.</p>
+                    </article>
+                    <article class="member">
+                        <img src="member3.jpg" alt="Member 3">
+                        <h2>Member 3</h2>
+                        <p><strong>Role:</strong> Developer</p>
+                        <p><strong>Description:</strong> Our coding wizard, bringing ideas to life with clean, efficient, and scalable code.</p>
+                    </article>
+                    <article class="member">
+                        <img src="member4.jpg" alt="Member 4">
+                        <h2>Member 4</h2>
+                        <p><strong>Role:</strong> Content Creator</p>
+                        <p><strong>Description:</strong> The storyteller behind our brand, crafting engaging content that resonates with audiences and sparks conversation.</p>
+                    </article>
+                </section>
+            </main>
+        </div>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2024 Canvas Drawing Tool. All rights reserved.</p>
+            <p>Follow us on:
+                <a href="#">Facebook</a> | 
+                <a href="#">Instagram</a> | 
+                <a href="#">Twitter</a>
+            </p>
+        </footer>
+    </div>
 </body>
 </html>
