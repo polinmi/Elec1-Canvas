@@ -11,7 +11,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #ff1493; /* Changed to match previous request */
             height: 100%;
         }
 
@@ -33,29 +33,50 @@
             height: auto;
         }
 
-        .nav-links {
+        .menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
             display: flex;
-            list-style: none;
+            align-items: center;
+            gap: 8px;
         }
 
-        .nav-links li {
-            margin: 0 15px;
+        .menu-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            padding: 15px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 200px;
+            z-index: 999;
         }
 
-        .nav-links a {
+        .menu-content a {
             text-decoration: none;
             color: #fff;
+            margin: 10px 0;
             font-size: 1.2rem;
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #ff1493;
+        .menu-content a:hover {
+            color: #ff6a00;
         }
 
         /* About Section Styling */
         header {
-            background-color: #ff1493; /* Purple background for header */
+            background-color: #6c5ce7; /* Background color updated to another shade of purple */
             color: white;
             text-align: center;
             padding: 30px;
@@ -69,12 +90,9 @@
 
         header p {
             font-size: 1.2em;
-
         }
 
-        
-
-        .content{
+        .content {
             font-family: 'Times New Roman', Times, serif;
             color: black;
         }
@@ -166,20 +184,19 @@
             flex: 1;
         }
     </style>
+     <!-- Menu -->
+     <div class="menu" onclick="toggleMenu()">
+        <i class="fa fa-bars" style="font-size: 24px; color: #fff;"></i> Menu
+    </div>
+
+    <div class="menu-content" id="menuContent">
+        <a href="home.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="drawing.html">Drawing Tool</a>
+    </div>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="https://vectorportal.com/storage/b0mua9q3b4snAb5EFR50WNsRL0ZcGvmyPYff9Hgg.jpg" alt="Canvas Drawing Tool Logo">
-        </div>
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="drawing.html">Drawing Tool</a></li>
-        </ul>
-    </nav>
 
         <!-- Main Content Section -->
         <div class="content">
@@ -196,13 +213,12 @@
                         <p><strong>Role:</strong> Team Leader</p>
                         <p><strong>Name:</strong> Pauline May Coming</p>
                         <p><strong>Description:</strong> A visionary leader who inspires and drives the team towards success with her strategic thinking and exceptional problem-solving skills.</p>
-                        
                     </article>
                     <article class="member">
-                        <img src="member2.jpg" alt="Member 2">
-                        <h2>Member 2</h2>
-                        <p><strong>Role:</strong> Designer</p>
-                        <p><strong>Description:</strong> A creative genius, designing visually stunning experiences that delight users and elevate our products.</p>
+                        <img src="blob:https://www.facebook.com/cd715995-2b69-48c7-9c00-5ca04d1adebc" alt="Member 2">
+                        <h2>Davram A, Javier</h2>
+                        <p><strong>Role:</strong> Member</p>
+                        <p><strong>Description:</strong> The pabuhat gamay</p>
                     </article>
                     <article class="member">
                         <img src="member3.jpg" alt="Member 3">

@@ -7,6 +7,7 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 <body>
     <style>
@@ -20,53 +21,66 @@
         /* Body Styling */
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom right, #ff7f50, #ff1493);
+            background: linear-gradient(to bottom right, #4c4cf7, #ff6a00);
             color: #fff;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure content fills the screen */
+            overflow-y: auto;
         }
 
-        /* Navbar Styling */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1rem 2rem;
+        /* Menu */
+        .menu {
             position: fixed;
-            width: 100%;
-            top: 0;
+            top: 20px;
+            left: 20px;
             z-index: 1000;
-        }
-
-        .navbar .logo img {
-            width: 50px;
-            height: auto;
-        }
-
-        .nav-links {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
             display: flex;
-            list-style: none;
+            align-items: center;
+            gap: 8px;
         }
 
-        .nav-links li {
-            margin: 0 15px;
+        .menu-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            padding: 15px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 200px;
+            z-index: 999;
         }
 
-        .nav-links a {
+        .menu-content a {
             text-decoration: none;
             color: #fff;
+            margin: 10px 0;
             font-size: 1.2rem;
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #ff1493;
+        .menu-content a:hover {
+            color: #ff6a00;
+        }
+
+        /* Menu toggle */
+        .menu-content.active {
+            display: flex;
         }
 
         /* Header Section */
         .header {
             text-align: center;
-            margin-top: 100px;
+            margin-top: 120px;
             padding: 50px;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 10px;
@@ -119,7 +133,7 @@
         }
 
         #toolbar button {
-            background: #ff1493;
+            background: #ff6a00;
             color: white;
             padding: 15px 30px;
             border: none;
@@ -130,7 +144,7 @@
         }
 
         #toolbar button:hover {
-            background: #ff7f50;
+            background: #4c4cf7;
         }
 
         #toolbar input[type="color"] {
@@ -156,11 +170,12 @@
             padding: 10px 0;
             background: #2c2f33;
             color: #fff;
+            margin-top: auto; /* Ensure footer stays at the bottom */
         }
 
         footer a {
             text-decoration: none;
-            color: #ff1493;
+            color: #ff6a00;
             transition: color 0.3s;
         }
 
@@ -168,26 +183,51 @@
             color: #fff;
         }
 
-        /* Responsive Design */
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 50px;
+            padding: 0 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design for Gallery */
         @media (max-width: 768px) {
-            #toolbar {
-                flex-direction: column;
-                gap: 10px;
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
     </style>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="https://vectorportal.com/storage/b0mua9q3b4snAb5EFR50WNsRL0ZcGvmyPYff9Hgg.jpg" alt="Canvas Drawing Tool Logo">
-        </div>
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="drawing.html">Drawing Tool</a></li>
-        </ul>
-    </nav>
+    <!-- Menu -->
+    <div class="menu" onclick="toggleMenu()">
+        <i class="fa fa-bars" style="font-size: 24px; color: #fff;"></i> Menu
+    </div>
+
+    <div class="menu-content" id="menuContent">
+        <a href="home.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="drawing.html">Drawing Tool</a>
+    </div>
 
     <!-- Header -->
     <div class="header">
@@ -228,6 +268,17 @@
         </ul>
     </section>
 
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <h2>Gallery</h2>
+        <img src="https://img.freepik.com/premium-vector/cute-children-draw-doodles_118813-15278.jpg" alt="Drawing 1">
+        <img src="https://thumb.ac-illust.com/c9/c97dc0b5dfc8c299c0db6797af4b754c_w.jpeg" alt="Drawing 2">
+        <img src="https://as2.ftcdn.net/v2/jpg/05/41/75/21/1000_F_541752101_V4SJtVb31o3N9FUU6FI2UHynVL79ik8r.jpg" alt="Drawing 3">
+        <img src="https://as2.ftcdn.net/v2/jpg/02/32/69/57/1000_F_232695745_i7AP6fAruwInmzsOaypt257MnCj1Vvp3.jpg" alt="Drawing 4">
+        <img src="https://img.freepik.com/premium-vector/children-s-drawing-flower-set-with-crayons_651766-227.jpg?w=740" alt="Drawing 5">
+        <img src="https://media.istockphoto.com/id/464884192/vector/childs-drawing-bees-and-flowers-nature.jpg?s=1024x1024&w=is&k=20&c=NskNYYE_VsuQMYf5JwqNkIJZv1RkEee8mCExib9ixjw=" alt="Drawing 6">
+    </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Canvas Drawing Tool. All rights reserved.</p>
@@ -237,5 +288,20 @@
             <a href="#">Twitter</a>
         </p>
     </footer>
+    <script>
+        // Toggle menu visibility
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            menuContent.classList.toggle('active');
+        }
+
+        // Close the menu if clicked outside
+        window.onclick = function(event) {
+            const menuContent = document.getElementById('menuContent');
+            if (!event.target.matches('.menu') && !event.target.matches('.menu *')) {
+                menuContent.classList.remove('active');
+            }
+        }
+    </script>
 </body>
 </html>

@@ -6,206 +6,167 @@
     <title>Canvas Drawing Tool</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-
     <style>
         /* Reset default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Body Style */
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom right, #ff7f50, #ff1493); /* Bright gradient background */
-    color: #fff;
-    line-height: 1.6;
-}
+        /* Body Style */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #4c4cf7, #ff6a00); /* Bright gradient background */
+            color: #fff;
+            line-height: 1.6;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column; /* Ensure footer stays at the bottom */
+        }
 
-/* Navbar Styling */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 1rem 2rem;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
+       /* Menu */
+       .menu {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.navbar .logo img {
-    width: 50px;
-    height: auto;
-}
+        .menu-content {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 5px;
+            padding: 15px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 200px;
+            z-index: 999;
+        }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-}
+        .menu-content a {
+            text-decoration: none;
+            color: #fff;
+            margin: 10px 0;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
 
-.nav-links li {
-    margin: 0 15px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: #ff1493; /* Fun hover effect for the links */
-}
-
-/* Main Header */
-
-
-.header p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-}
-
-/* Additional Information Section */
-.features, .how-it-works, .benefits {
-    margin-top: 50px;
-    padding: 20px;
-    text-align: center;
-}
-
-.features h2, .how-it-works h2, .benefits h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.features ul, .benefits ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.features li, .benefits li {
-    font-size: 1.1rem;
-    margin: 10px 0;
-}
-
-.how-it-works ol {
-    list-style-type: decimal;
-    padding-left: 30px;
-}
-
-.how-it-works li {
-    font-size: 1.1rem;
-    margin: 10px 0;
-}
-
+        .menu-content a:hover {
+            color: #ff6a00;
+        }
 /* Drawing Toolbar */
 #toolbar {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    gap: 20px;
+    position: fixed;
+    top: 20%;  /* Starting point from the top */
+    right: 10px; /* Position on the right side */
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 20px; /* Space between buttons */
+    z-index: 1000;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    border-radius: 5px;
+    display: flex; /* Use flexbox to stack items vertically */
 }
 
+/* Button Styling */
 #toolbar button {
-    background: #ff1493;
+    background: #ff6a00;
     color: white;
     padding: 15px 30px;
     border: none;
-    border-radius: 1px;
+    border-radius: 5px;
     font-size: 1.2rem;
-    cursor: move;
+    cursor: pointer;
     transition: background 0.3s;
+    width: 100%; /* Make buttons take full width */
 }
 
+/* Button Hover Effect */
 #toolbar button:hover {
-    background: #ff7f50; /* Fun hover effect for buttons */
+    background: #4c4cf7; /* Hover effect with different background color */
 }
 
-/* Pencil and Eraser icons */
-#toolbar button#pencilBtn:before {
-    content: "✏️"; 
-    font-size: 2rem;
-}
-
-#toolbar button#eraserBtn:before {
-    content: "🧽"; /* Eraser icon */
-    font-size: 1.5rem;
-}
-
+/* Color Picker */
 #toolbar input[type="color"] {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
+    margin-bottom: 20px; /* Space below the color picker */
 }
 
-/* Canvas Styling */
-canvas {
-    display: block;
-    margin: 0 auto;
-    border: solid white;
-    border-radius: 10px;
-    background-color: beige; 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Light shadow for canvas */
-}
+       
+        /* Canvas Styling */
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: solid white;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
 
-/* Footer Styling */
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background: #2c2f33;
-    color: #fff;
-}
+        /* Footer Styling */
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #2c2f33;
+            color: #fff;
+            margin-top: auto; /* Push footer to the bottom */
+        }
 
-footer p {
-    margin: 5px 0;
-}
+        footer p {
+            margin: 5px 0;
+        }
 
-footer a {
-    text-decoration: none;
-    color: #ff1493;
-    transition: color 0.3s;
-}
+        footer a {
+            text-decoration: none;
+            color: #ff6a00;
+            transition: color 0.3s;
+        }
 
-footer a:hover {
-    color: #fff; /* Interactive hover effect on links */
-}
+        footer a:hover {
+            color: #fff;
+        }
 
-/* Add some responsiveness */
-@media (max-width: 768px) {
-    .features, .how-it-works, .benefits {
-        padding: 20px;
-    }
+        @media (max-width: 768px) {
+            .menu-content {
+                flex-direction: column;
+                padding: 10px;
+            }
 
-    #toolbar {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    
-}
-
+            #toolbar {
+                left: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar Section -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="https://img.freepik.com/premium-photo/colorful-flowers-leaves-dark-background-generative-ai_946522-16374.jpg?w=826" alt="Logo" id="logo"> <!-- Replace with your logo -->
-        </div>
-        <ul class="nav-links">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="drawing.html">Drawing Tool</a></li>
-        </ul>
-    </nav>
 
-    <!-- Main Content -->
-    <div class="header" id="home">
-        
+    <!-- Menu Section -->
+    <div class="menu" onclick="toggleMenu()">
+        <i class="fa fa-bars" style="font-size: 24px; color: #fff;"></i> Menu
+    </div>
+
+    <div class="menu-content" id="menuContent">
+        <a href="home.html">Home</a>
+        <a href="drawing.html">Drawing Tool</a>
+        <a href="about.html">About Us</a>
     </div>
 
     <!-- Drawing Toolbar and Canvas -->
@@ -220,7 +181,7 @@ footer a:hover {
         </button>
     </div>
 
-    <div id="canvas-container">
+    <div id="canvas-container" style="flex-grow: 1; display: flex; justify-content: center; align-items: center;">
         <canvas id="drawingCanvas" width="800" height="600"></canvas>
     </div>
 
@@ -236,5 +197,12 @@ footer a:hover {
 
     <!-- Include JavaScript -->
     <script src="canva.js"></script>
+    <script>
+        // Toggle menu visibility
+        function toggleMenu() {
+            const menuContent = document.getElementById('menuContent');
+            menuContent.style.display = (menuContent.style.display === 'flex') ? 'none' : 'flex';
+        }
+    </script>
 </body>
 </html>

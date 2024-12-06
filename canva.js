@@ -99,3 +99,7 @@ downloadBtn.addEventListener('click', () => {
     a.download = "drawing.png";
     a.click();
 });
+function toggleMenu() {
+    const menuContent = document.getElementById('menuContent');
+    menuContent.style.display = (menuContent.style.display === 'flex') ? 'none' : 'flex';
+}
