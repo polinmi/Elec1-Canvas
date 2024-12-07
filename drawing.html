@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Drawing Tool</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lobster&display=swap" rel="stylesheet">
+    <title>Canva Drawing Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <style>
-        /* Reset default styles */
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
@@ -16,18 +16,109 @@
 
         /* Body Style */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom right, #4c4cf7, #ff6a00); /* Bright gradient background */
-            color: #fff;
-            line-height: 1.6;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column; /* Ensure footer stays at the bottom */
+    font-family: 'Poppins', sans-serif;
+    background: url('https://slidechef.net/wp-content/uploads/2023/09/rainbow-color-background-768x432.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+
+        /* Animated Stars Background */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+            opacity: 0.4;
+            z-index: 0;
         }
 
-       /* Menu */
-       .menu {
+        /* Toolbar Style (Moved to the Right) */
+        #toolbar {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(-50%) translateX(0);
+            }
+            50% {
+                transform: translateY(-50%) translateX(10px);
+            }
+        }
+
+        #toolbar button, #toolbar input[type="color"], #toolbar input[type="number"] {
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin: 10px 0;
+            background: #4c4cf7;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            color: white;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #toolbar button:hover {
+            background: #ff6a00;
+            transform: rotate(15deg);
+        }
+
+        #toolbar input[type="color"] {
+            padding: 0;
+            border: solid 2px #ddd;
+        }
+
+        #toolbar input[type="number"] {
+            width: 80px;
+            height: 30px;
+            margin: 5px 0;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Canvas Styling */
+        #canvas-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        canvas {
+            background: white;
+            border: solid 2px #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+
+        /* Menu */
+        .menu {
             position: fixed;
             top: 20px;
             left: 20px;
@@ -67,141 +158,153 @@
         .menu-content a:hover {
             color: #ff6a00;
         }
-/* Drawing Toolbar */
-#toolbar {
-    position: fixed;
-    top: 20%;  /* Starting point from the top */
-    right: 10px; /* Position on the right side */
-    flex-direction: column; /* Stack buttons vertically */
-    gap: 20px; /* Space between buttons */
-    z-index: 1000;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-    border-radius: 5px;
-    display: flex; /* Use flexbox to stack items vertically */
-}
 
-/* Button Styling */
-#toolbar button {
-    background: #ff6a00;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.3s;
-    width: 100%; /* Make buttons take full width */
-}
-
-/* Button Hover Effect */
-#toolbar button:hover {
-    background: #4c4cf7; /* Hover effect with different background color */
-}
-
-/* Color Picker */
-#toolbar input[type="color"] {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-bottom: 20px; /* Space below the color picker */
-}
-
-       
-        /* Canvas Styling */
-        canvas {
-            display: block;
-            margin: 0 auto;
-            border: solid white;
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Footer Styling */
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background: #2c2f33;
-            color: #fff;
-            margin-top: auto; /* Push footer to the bottom */
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        footer a {
-            text-decoration: none;
-            color: #ff6a00;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #fff;
-        }
-
-        @media (max-width: 768px) {
-            .menu-content {
-                flex-direction: column;
-                padding: 10px;
-            }
-
-            #toolbar {
-                left: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-            }
+        /* Menu toggle */
+        .menu-content.active {
+            display: flex;
         }
     </style>
 </head>
 <body>
-
-    <!-- Menu Section -->
+    <!-- Menu -->
     <div class="menu" onclick="toggleMenu()">
         <i class="fa fa-bars" style="font-size: 24px; color: #fff;"></i> Menu
     </div>
 
     <div class="menu-content" id="menuContent">
         <a href="home.html">Home</a>
-        <a href="drawing.html">Drawing Tool</a>
-        <a href="about.html">About Us</a>
     </div>
 
-    <!-- Drawing Toolbar and Canvas -->
+    <!-- Toolbar -->
     <div id="toolbar">
-        <button id="pencilBtn">Pencil</button>
-        <button id="eraserBtn">Eraser</button>
-        <input type="color" id="colorPicker">
-        <button id="clearBtn">Clear</button>
-        <button id="download" class="btn">
-            Download
-            <i class="fa-solid fa-arrow-down"></i>
-        </button>
+        <button id="pencilBtn" title="Pencil"><i class="fas fa-pencil-alt"></i></button>
+        <button id="eraserBtn" title="Eraser"><i class="fas fa-eraser"></i></button>
+        <button id="lineBtn" title="Line"><i class="fas fa-slash"></i></button>
+        <button id="rectBtn" title="Rectangle"><i class="far fa-square"></i></button>
+        <button id="circleBtn" title="Circle"><i class="far fa-circle"></i></button>
+        <input type="color" id="colorPicker" title="Pick a color">
+        <input type="number" id="sizeInput" title="Pencil Size" value="5" min="1" max="20">
+        <button id="clearBtn" title="Clear Canvas"><i class="fas fa-trash-alt"></i></button>
+        <button id="download" title="Download"><i class="fas fa-download"></i></button>
     </div>
 
-    <div id="canvas-container" style="flex-grow: 1; display: flex; justify-content: center; align-items: center;">
+    <!-- Canvas Container -->
+    <div id="canvas-container">
         <canvas id="drawingCanvas" width="800" height="600"></canvas>
     </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Canvas Drawing Tool. All rights reserved.</p>
-        <p>Follow us on:
-            <a href="#">Facebook</a> | 
-            <a href="#">Instagram</a> | 
-            <a href="#">Twitter</a>
-        </p>
-    </footer>
-
-    <!-- Include JavaScript -->
-    <script src="canva.js"></script>
     <script>
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        let drawing = false;
+        let startX, startY;
+        let currentTool = 'pencil';
+        let pencilSize = 5; // Default pencil size
+
+        // Event Listeners for Tool Selection
+        document.getElementById('pencilBtn').onclick = () => setTool('pencil');
+        document.getElementById('eraserBtn').onclick = () => setTool('eraser');
+        document.getElementById('lineBtn').onclick = () => setTool('line');
+        document.getElementById('rectBtn').onclick = () => setTool('rectangle');
+        document.getElementById('circleBtn').onclick = () => setTool('circle');
+        document.getElementById('clearBtn').onclick = clearCanvas;
+        document.getElementById('download').onclick = downloadCanvas;
+        document.getElementById('colorPicker').oninput = (e) => {
+            ctx.strokeStyle = e.target.value;
+            ctx.fillStyle = e.target.value;
+        };
+        document.getElementById('sizeInput').oninput = (e) => {
+            pencilSize = e.target.value;
+        };
+
+        // Mouse Events for Drawing
+        canvas.onmousedown = (e) => {
+            drawing = true;
+            startX = e.offsetX;
+            startY = e.offsetY;
+
+            if (currentTool === 'pencil') {
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineWidth = pencilSize; // Set pencil size
+            }
+        };
+
+        canvas.onmousemove = (e) => {
+            if (!drawing) return;
+            const x = e.offsetX, y = e.offsetY;
+
+            if (currentTool === 'pencil') {
+                ctx.lineTo(x, y);
+                ctx.stroke();
+            } else if (currentTool === 'eraser') {
+                ctx.clearRect(x - pencilSize / 2, y - pencilSize / 2, pencilSize, pencilSize);
+            }
+        };
+
+        canvas.onmouseup = (e) => {
+            if (drawing) {
+                const x = e.offsetX, y = e.offsetY;
+
+                if (currentTool === 'line') {
+                    drawLine(startX, startY, x, y);
+                } else if (currentTool === 'rectangle') {
+                    drawRectangle(startX, startY, x - startX, y - startY);
+                } else if (currentTool === 'circle') {
+                    drawCircle(startX, startY, Math.sqrt((x - startX) ** 2 + (y - startY) ** 2));
+                }
+            }
+            drawing = false;
+        };
+
+        // Drawing Functions
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        function drawRectangle(x, y, width, height) {
+            ctx.beginPath();
+            ctx.rect(x, y, width, height);
+            ctx.stroke();
+        }
+
+        function drawCircle(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // Utility Functions
+        function setTool(tool) {
+            currentTool = tool;
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function downloadCanvas() {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL();
+            link.download = 'drawing.png';
+            link.click();
+        }
+
         // Toggle menu visibility
         function toggleMenu() {
             const menuContent = document.getElementById('menuContent');
-            menuContent.style.display = (menuContent.style.display === 'flex') ? 'none' : 'flex';
+            menuContent.classList.toggle('active');
+        }
+
+        // Close the menu if clicked outside
+        window.onclick = function(event) {
+            const menuContent = document.getElementById('menuContent');
+            if (!event.target.matches('.menu') && !event.target.matches('.menu *')) {
+                menuContent.classList.remove('active');
+            }
         }
     </script>
 </body>
