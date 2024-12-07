@@ -74,6 +74,12 @@
             color: #ff6a00;
         }
 
+        /* Menu toggle */
+        .menu-content.active {
+            display: flex;
+        }
+
+
         /* About Section Styling */
         header {
             background-color: #6c5ce7; /* Background color updated to another shade of purple */
@@ -245,6 +251,22 @@
                 <a href="#">Twitter</a>
             </p>
         </footer>
+        <script>
+            // Toggle menu visibility
+            function toggleMenu() {
+                const menuContent = document.getElementById('menuContent');
+                menuContent.classList.toggle('active');
+            }
+    
+            // Close the menu if clicked outside
+            window.onclick = function(event) {
+                const menuContent = document.getElementById('menuContent');
+                if (!event.target.matches('.menu') && !event.target.matches('.menu *')) {
+                    menuContent.classList.remove('active');
+                }
+            }
+        </script>
+        
     </div>
 </body>
 </html>
