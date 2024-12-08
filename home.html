@@ -8,7 +8,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lobster&display=swap" rel="stylesheet">
     <style>
-        /* Reset */
+        
         * {
             margin: 0;
             padding: 0;
@@ -43,21 +43,21 @@
 
         /* Body */
         body {
-            font-family: 'Poppins', sans-serif;
-            background: url('https://wallpapers.com/images/high/cute-rainbow-background-mwb6blxdrf7carmx.webp') no-repeat center center fixed;
-            background-size: cover;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-            opacity: 1;
-            transition: opacity 1s ease-in-out;
-        }
-
+    font-family: 'Poppins', sans-serif;
+    background: url('https://wallpapers.com/images/high/cute-rainbow-background-mwb6blxdrf7carmx.webp') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;  /* Ensure the body takes at least full viewport height */
+    padding: 20px;
+    overflow-x: hidden;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    justify-content: space-between; /* Space the content evenly */
+}
         /* Header Section */
         header {
             margin-top: 50px;
@@ -199,17 +199,16 @@
         }
 
         /* Footer */
-    footer {
-        margin-top: auto;
-        padding: 30px 20px;
-        background: #1d3557;
-        color: #fff;
-        text-align: center;
-        width: 100%;
-        position: relative;
-        bottom: 0;
-    }
-
+        footer {
+    padding: 30px 20px;
+    background: #1d3557;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    margin-top: auto;  /* Ensure it sticks to the bottom of the page */
+}
     footer p {
         font-size: 1.1rem;
         margin-bottom: 10px;
@@ -263,7 +262,7 @@
     <!-- About Us Section -->
     <section class="about">
         <h2>About Us</h2>
-        <p>We are a diverse team of innovators, designers, developers, and content creators, united by a passion for crafting exceptional digital solutions. Each member brings a unique perspective and skill set, but together we share the mission of delivering groundbreaking experiences that make a real difference.</p>
+        <p>We are a diverse team of Group 10, united by a passion for crafting exceptional digital solutions. Each member brings a unique perspective and skill set, but together we share the mission of delivering groundbreaking experiences that make a real difference.</p>
 
         <div class="team">
             <div class="member">
@@ -273,18 +272,18 @@
                
             </div>
             <div class="member">
-                <img src="https://via.placeholder.com/200" alt="Davram A. Javier">
+                <img src="https://scontent.fcgy2-1.fna.fbcdn.net/v/t1.15752-9/462568363_2279221505783771_9104037274587250466_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeE5QQHev4VXAgdU5d-q3IZcY5M-nRMicoRjkz6dEyJyhIxcV7sEi8niWQHePC01DcScPmnEDtdlQojB1205i3JT&_nc_ohc=hU19QFFxfPQQ7kNvgHvVxby&_nc_zt=23&_nc_ht=scontent.fcgy2-1.fna&oh=03_Q7cD1QEoVzM1mLr1nAPTuso8uBah28VMuML0uIgG2ufuKH4nqw&oe=677C4B0A" alt="Davram A. Javier">
                 <h3>Davram A. Javier</h3>
                 <p><strong>Role:</strong> Member</p>
 
             </div>
             <div class="member">
-                <img src="https://via.placeholder.com/200" alt="Jane Doe">
+                <img src="https://scontent.fcgy2-2.fna.fbcdn.net/v/t1.15752-9/467029783_1618861619062137_2871289876043514907_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFEA1x_Yx_cGOY44zxmtvzweU0IYYL__iJ5TQhhgv_-ItPtPtUoLCRfp0nE3rvICOAHkJb7aLX_d4ivI4YoUnf6&_nc_ohc=Ux4fpyVaz98Q7kNvgGdcHGW&_nc_zt=23&_nc_ht=scontent.fcgy2-2.fna&oh=03_Q7cD1QGX0GQ7Dy7aG1vN3pVi0rpDAX9fVQSyrifqgmW208rcvA&oe=677C727B" alt="Jane Doe">
                 <h3>Jane Doe</h3>
                 <p><strong>Role:</strong> Member</p>
             </div>
             <div class="member">
-                <img src="https://via.placeholder.com/200" alt="John Smith">
+                <img src="https://scontent.fcgy2-4.fna.fbcdn.net/v/t1.15752-9/462561917_1349536536018522_6158375289552393352_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGKfYkAVXtcFOhco9jmECZaIVA22KGaGc4hUDbYoZoZzjKtY2HrmhLtDLYPKtjZgHyAXtKdA6o7iTRCEpo0phc8&_nc_ohc=6_F-HIv2blEQ7kNvgGCtE4E&_nc_zt=23&_nc_ht=scontent.fcgy2-4.fna&oh=03_Q7cD1QFodFjFP_Ub7R4AsAMY8hNvd1M9ONVvEv3iAI87EDPJKg&oe=677C6A6A" alt="John Smith">
                 <h3>John Smith</h3>
                 <p><strong>Role:</strong> Member</p>
             </div>
