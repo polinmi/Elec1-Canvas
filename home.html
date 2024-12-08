@@ -3,274 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas Drawing Tool</title>
-    
+    <title>Welcome to Canvas Drawing Tool</title>
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Lobster&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-</head>
-<body>
     <style>
-        /* Reset default styles */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body Styling */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom right, #4c4cf7, #ff6a00);
-            color: #fff;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Ensure content fills the screen */
-            overflow-y: auto;
-        }
-
-        /* Menu */
-        .menu {
+        /* Full-Screen Rainbow Intro */
+        .rainbow-intro {
             position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 5px;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .menu-content {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.9);
-            border-radius: 5px;
-            padding: 15px;
-            position: absolute;
-            top: 50px;
+            top: 0;
             left: 0;
-            width: 200px;
-            z-index: 999;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 400% 400%;
+            animation: rainbowAnimation 2s ease-in-out forwards;
+            z-index: 9999;
         }
 
-        .menu-content a {
-            text-decoration: none;
-            color: #fff;
-            margin: 10px 0;
-            font-size: 1.2rem;
-            transition: color 0.3s;
+        @keyframes rainbowAnimation {
+            0% {
+                background-position: 0 0;
+            }
+            50% {
+                background-position: 100% 0;
+            }
+            100% {
+                background-position: 0 100%;
+                opacity: 0;
+            }
         }
 
-        .menu-content a:hover {
-            color: #ff6a00;
-        }
-
-        /* Menu toggle */
-        .menu-content.active {
-            display: flex;
-        }
-
+        /* Body */
+        body {
+    font-family: 'Poppins', sans-serif;
+    background: url('https://wallpapers.com/images/high/cute-rainbow-background-mwb6blxdrf7carmx.webp') no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;  /* Ensure the body takes at least full viewport height */
+    padding: 20px;
+    overflow-x: hidden;
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    justify-content: space-between; /* Space the content evenly */
+}
         /* Header Section */
-        .header {
-            text-align: center;
-            margin-top: 120px;
-            padding: 50px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        header {
+            margin-top: 50px;
         }
 
-        .header h1 {
+        header h1 {
             font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #ff6a00;
             font-family: 'Lobster', cursive;
         }
 
-        .header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-
-        /* Content Sections */
-        section {
-            margin-top: 50px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        section ul, section ol {
-            padding: 0;
-            list-style: none;
-        }
-
-        section ul li, section ol li {
-            font-size: 1.1rem;
-            margin: 10px 0;
-        }
-
-        section ol {
-            list-style: decimal;
-            padding-left: 30px;
-        }
-
-        /* Toolbar */
-        #toolbar {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 20px;
-        }
-
-        #toolbar button {
-            background: #ff6a00;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        #toolbar button:hover {
-            background: #4c4cf7;
-        }
-
-        #toolbar input[type="color"] {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        /* Canvas Styling */
-        canvas {
-            display: block;
+        header p {
+            font-size: 1.5rem;
+            line-height: 1.5;
+            max-width: 600px;
             margin: 0 auto;
-            border: 5px solid #fff;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background: #2c2f33;
-            color: #fff;
-            margin-top: auto; /* Ensure footer stays at the bottom */
-        }
-
-        footer a {
-            text-decoration: none;
             color: #ff6a00;
-            transition: color 0.3s;
         }
 
-        footer a:hover {
+        /* Button */
+        .learn-more {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1.5rem;
             color: #fff;
+            background: #ff6a00;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .learn-more:hover {
+            background: #e55b00;
+            transform: scale(1.1);
         }
 
         /* Gallery Section */
         .gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 50px;
-            padding: 0 20px;
+            gap: 20px;
+            margin-top: 40px;
+            max-width: 1000px;
+            width: 100%;
         }
 
         .gallery img {
             width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
         }
 
         .gallery img:hover {
             transform: scale(1.05);
         }
 
-        /* Responsive Design for Gallery */
-        @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* About Us Section */
+        .about {
+            margin-top: 50px;
+            padding: 30px;
+            max-width: 800px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px); /* Apply blur effect */
+            animation: slideIn 1s ease-in-out;
         }
 
-        @media (max-width: 480px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
+        .about h2 {
+            font-size: 2.5rem;
+            color: #ff6a00;
+            margin-bottom: 20px;
+            font-family: 'Lobster', cursive;
         }
 
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Team Section */
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .member {
+            width: 250px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .member img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .member img:hover {
+            transform: rotate(10deg);
+        }
+
+        .member h3 {
+            font-size: 1.5rem;
+            color: #ff6a00;
+            margin-top: 10px;
+            font-family: 'Lobster', cursive;
+        }
+
+        .member p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+    padding: 30px 20px;
+    background: #1d3557;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    margin-top: auto;  /* Ensure it sticks to the bottom of the page */
+}
+    footer p {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+
+    footer a {
+        color: #ff6a00;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+        color: #fff;
+    }
+
+
+        /* Animation */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
+</head>
+<body>
+    <div class="rainbow-intro"></div> <!-- Rainbow Intro Animation -->
 
-    <!-- Menu -->
-    <div class="menu" onclick="toggleMenu()">
-        <i class="fa fa-bars" style="font-size: 24px; color: #fff;"></i> Menu
-    </div>
-
-    <div class="menu-content" id="menuContent">
-        <a href="home.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="drawing.html">Drawing Tool</a>
-    </div>
-
-    <!-- Header -->
-    <div class="header">
-        <h1>Canvas Drawing Tool</h1>
-        <p>Use this tool to draw, erase, and select colors. Have fun creating your artwork!</p>
-    </div>
-
-    <!-- Features -->
-    <section class="features">
-        <h2>Features of the Canvas Drawing Tool</h2>
-        <ul>
-            <li><strong>Draw Freely:</strong> Use the pencil tool to create freehand drawings.</li>
-            <li><strong>Eraser Tool:</strong> Easily erase any part of your drawing.</li>
-            <li><strong>Color Picker:</strong> Choose vibrant colors for your creations.</li>
-            <li><strong>Clear Canvas:</strong> Reset your work with a single click.</li>
-        </ul>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-it-works">
-        <h2>How It Works</h2>
-        <ul>
-            <li>Select your tool: pencil or eraser.</li>
-            <li>Pick a color using the color picker.</li>
-            <li>Click and drag to draw on the canvas.</li>
-            <li>Erase mistakes with the eraser tool.</li>
-        </ul>
-    </section>
-
-    <section class="benefits">
-        <h2>Why Use Our Drawing Tool?</h2>
-        <p>Our tool is designed to provide an easy and fun drawing experience for everyone. Here are just a few reasons why you should try it:</p>
-        <ul>
-            <li><strong>Accessible and User-Friendly:</strong> No complicated settings—just click and start drawing.</li>
-            <li><strong>Great for All Ages:</strong> Whether you're a child or an adult, our tool is intuitive and enjoyable for all users.</li>
-            <li><strong>Express Your Creativity:</strong> Whether you're sketching, doodling, or creating detailed artwork, this tool is perfect for any project.</li>
-            <li><strong>Works Across Devices:</strong> Whether you're using a desktop, laptop, or mobile device, our tool adapts to any screen size.</li>
-        </ul>
-    </section>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Canvas Drawing Tool</h1>
+        <p>From exploring creativity to having fun, our drawing tool offers a colorful space for kids to express their imagination.</p>
+        <a href="drawing.html" class="learn-more">Go to Drawing Tool</a>
+    </header>
 
     <!-- Gallery Section -->
     <section class="gallery">
-        <h2>Gallery</h2>
         <img src="https://img.freepik.com/premium-vector/cute-children-draw-doodles_118813-15278.jpg" alt="Drawing 1">
         <img src="https://thumb.ac-illust.com/c9/c97dc0b5dfc8c299c0db6797af4b754c_w.jpeg" alt="Drawing 2">
         <img src="https://as2.ftcdn.net/v2/jpg/05/41/75/21/1000_F_541752101_V4SJtVb31o3N9FUU6FI2UHynVL79ik8r.jpg" alt="Drawing 3">
@@ -279,29 +259,51 @@
         <img src="https://media.istockphoto.com/id/464884192/vector/childs-drawing-bees-and-flowers-nature.jpg?s=1024x1024&w=is&k=20&c=NskNYYE_VsuQMYf5JwqNkIJZv1RkEee8mCExib9ixjw=" alt="Drawing 6">
     </section>
 
+    <!-- About Us Section -->
+    <section class="about">
+        <h2>About Us</h2>
+        <p>We are a diverse team of Group 10, united by a passion for crafting exceptional digital solutions. Each member brings a unique perspective and skill set, but together we share the mission of delivering groundbreaking experiences that make a real difference.</p>
+
+        <div class="team">
+            <div class="member">
+                <img src="https://scontent.fcgy2-4.fna.fbcdn.net/v/t39.30808-1/469278458_2312751502458100_6928559196111903893_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=110&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeHB4TJq_jA3EKfIbHIdBL4dhQ0-dcimAyOFDT51yKYDI7DhjqIchkMPpRqwCuThxGEtR2oWUQVZ54c1MUrQF7T3&_nc_ohc=l62Z6gnWk-0Q7kNvgF3Q8y8&_nc_zt=24&_nc_ht=scontent.fcgy2-4.fna&_nc_gid=A9-bm863WLZn6aPv2Y_Z2Ft&oh=00_AYDJiPnnovQ6-IOKfmSX5p8afg7AYAdorhd6m0aaQit1lA&oe=675A2253" alt="Pauline May Coming">
+                <h3>Pauline May Coming</h3>
+                <p><strong>Role:</strong> Team Leader</p>
+               
+            </div>
+            <div class="member">
+                <img src="https://scontent.fcgy2-1.fna.fbcdn.net/v/t1.15752-9/462568363_2279221505783771_9104037274587250466_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeE5QQHev4VXAgdU5d-q3IZcY5M-nRMicoRjkz6dEyJyhIxcV7sEi8niWQHePC01DcScPmnEDtdlQojB1205i3JT&_nc_ohc=hU19QFFxfPQQ7kNvgHvVxby&_nc_zt=23&_nc_ht=scontent.fcgy2-1.fna&oh=03_Q7cD1QEoVzM1mLr1nAPTuso8uBah28VMuML0uIgG2ufuKH4nqw&oe=677C4B0A" alt="Davram A. Javier">
+                <h3>Davram A. Javier</h3>
+                <p><strong>Role:</strong> Member</p>
+
+            </div>
+            <div class="member">
+                <img src="https://scontent.fcgy2-2.fna.fbcdn.net/v/t1.15752-9/467029783_1618861619062137_2871289876043514907_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFEA1x_Yx_cGOY44zxmtvzweU0IYYL__iJ5TQhhgv_-ItPtPtUoLCRfp0nE3rvICOAHkJb7aLX_d4ivI4YoUnf6&_nc_ohc=Ux4fpyVaz98Q7kNvgGdcHGW&_nc_zt=23&_nc_ht=scontent.fcgy2-2.fna&oh=03_Q7cD1QGX0GQ7Dy7aG1vN3pVi0rpDAX9fVQSyrifqgmW208rcvA&oe=677C727B" alt="Jane Doe">
+                <h3>Jane Doe</h3>
+                <p><strong>Role:</strong> Member</p>
+            </div>
+            <div class="member">
+                <img src="https://scontent.fcgy2-4.fna.fbcdn.net/v/t1.15752-9/462561917_1349536536018522_6158375289552393352_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGKfYkAVXtcFOhco9jmECZaIVA22KGaGc4hUDbYoZoZzjKtY2HrmhLtDLYPKtjZgHyAXtKdA6o7iTRCEpo0phc8&_nc_ohc=6_F-HIv2blEQ7kNvgGCtE4E&_nc_zt=23&_nc_ht=scontent.fcgy2-4.fna&oh=03_Q7cD1QFodFjFP_Ub7R4AsAMY8hNvd1M9ONVvEv3iAI87EDPJKg&oe=677C6A6A" alt="John Smith">
+                <h3>John Smith</h3>
+                <p><strong>Role:</strong> Member</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Canvas Drawing Tool. All rights reserved.</p>
-        <p>Follow us on:
-            <a href="#">Facebook</a> | 
-            <a href="#">Instagram</a> | 
-            <a href="#">Twitter</a>
+        <p>Follow us on: 
+            <a href="https://www.facebook.com/hananim.20">Facebook</a> | 
         </p>
     </footer>
-    <script>
-        // Toggle menu visibility
-        function toggleMenu() {
-            const menuContent = document.getElementById('menuContent');
-            menuContent.classList.toggle('active');
-        }
 
-        // Close the menu if clicked outside
-        window.onclick = function(event) {
-            const menuContent = document.getElementById('menuContent');
-            if (!event.target.matches('.menu') && !event.target.matches('.menu *')) {
-                menuContent.classList.remove('active');
-            }
-        }
+    <script>
+        // Remove the rainbow intro after animation
+        setTimeout(() => {
+            document.querySelector('.rainbow-intro').style.display = 'none';
+            document.body.style.opacity = 1; // Ensure the body is visible after the intro
+        }, 2000); // 2-second delay
     </script>
 </body>
 </html>
